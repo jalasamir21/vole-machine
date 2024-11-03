@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.27"
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "A1_Task4_S19_20230104::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-A1_Task4_S19_20230104-Debug-e08f2ab73b2d1bf9145f.json",
+					"jsonFile" : "target-A1_Task4_S19_20230104-Debug-2837c1b1508059826c52.json",
 					"name" : "A1_Task4_S19_20230104",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/A1-Task4-S19-20230104/cmake-build-debug",
-		"source" : "C:/A1-Task4-S19-20230104"
+		"build" : "/Users/ahmedatef/CLionProjects/vole-machine/cmake-build-debug",
+		"source" : "/Users/ahmedatef/CLionProjects/vole-machine"
 	},
 	"version" : 
 	{

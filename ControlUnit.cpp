@@ -2,21 +2,21 @@
 
 
 
-class ControlUnit {
+class Cu {
 private:
     static const int NUM_REGISTERS = 16;
     Register* registers[NUM_REGISTERS];
     Alu alu;
     int PC;
 public:
-    ControlUnit() {
+    Cu() {
         // initialization of registers 
         for (int i = 0; i < NUM_REGISTERS; ++i) {
             registers[i] = new Register();
         }
     }
 
-    ~ControlUnit() {
+    ~Cu() {
         // loop for destructing dynamically allocated registers
         for (int i = 0; i < NUM_REGISTERS; ++i) {
             delete registers[i];
