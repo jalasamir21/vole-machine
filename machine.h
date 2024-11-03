@@ -6,14 +6,17 @@
 #define VOLE_MACHINE_MACHINE_H
 #include "cpu.h"
 #include "memory.h"
+class Cpu;
+class Memory;
 class machine{
 
 private:
-    Cpu* processor;
-    Memory* mem;
+    Cpu& processor;
+    Memory& mem;
 
 public:
-    machine(Cpu* cpu, Memory* memo) : processor(reinterpret_cast<Cpu *>(cpu)), mem(memo) {}
+    machine(Cpu& cpuRef, Memory& memRef) : processor(cpuRef), mem(memRef) {}
+
     void loadProgramFile();
     void outputState();
 

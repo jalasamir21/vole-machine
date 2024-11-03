@@ -16,4 +16,5 @@ add_executable(A1_Task4_S19_20230104 main.cpp
         memory.cpp
         mainUi.cpp
         mainUi.h
-        Alu.cpp)
+        Alu.cpp
+)

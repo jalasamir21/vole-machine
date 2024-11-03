@@ -1,17 +1,14 @@
-#include "Register.h"
 #include "Memory.h"
-
-#include "cpu.cpp"
-
+#include "cpu.h"    // Include cpu.h instead of cpu.cpp
 #include "MainUi.h"
-#include "Machine.h"
-#include "ControlUnit.h"
 #include "Alu.h"
-//#include <iostream>
 
-MainUi::MainUi() : cpu(reg, memory), machine(cpu, memory) {
-    // Initialize CPU, Memory, and Register in the constructor if needed
+MainUi::MainUi() : reg(), memory(256), cpu(reg, memory), machine(cpu, memory) {
+    // Initialization list in correct dependency order
+    // No need to initialize memory inside the constructor body
 }
+
+
 
 void MainUi::displayMenu() {
     std::cout << "\n--- CPU Simulation Menu ---\n";

@@ -1,3 +1,4 @@
+
 #include "memory.h"
 //#include <stdexcept>
 
@@ -23,11 +24,34 @@ void Memory::setCell(int address, const string &Val) {
 int Memory::getSize() const {
     return size;
 }
-
-void Memory::setSize(int s) {
-    if (s <= 0) {
-        throw invalid_argument("Memory size must be positive");
+void Memory::write(int address, int value) {
+    if (address >= 0 && address < size) {
+        memory[address] = to_string(value);
+    } else {
+        throw out_of_range("Address out of range");
     }
-    size = s;
-    memory.resize(size);  // Resize the vector to the new size if it changes
+}
+int Memory::read(int address) const {
+    if (address >= 0 && address < size) {
+        return stoi(memory[address]);
+    }
+    return -1;
+}
+int Memory::getValue(int address) {
+    if (address >= 0 && address < size) {
+        return stoi(memory[address]);
+    }
+    throw out_of_range("Address out of range");
+}
+void Memory::displayMemory(int count) const {
+    for (int i = 0; i < count && i < size; ++i) {
+        cout << "Memory[" << i << "]: " << memory[i] << endl; // Display memory values
+    }
+}
+void Memory::deallocate() {
+    delete[] mem;
+    mem = nullptr;
+}
+void Memory::setSize(int size) {
+
 }

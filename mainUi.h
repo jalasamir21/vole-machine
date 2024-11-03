@@ -1,12 +1,9 @@
 #ifndef MAIN_UI_H
 #define MAIN_UI_H
 #include "Register.h"
-
 #include "Memory.h"
-#include "cpu.h"
-
+#include "Cpu.h"
 #include "Machine.h"
-
 #include <iostream>
 #include <string>
 
