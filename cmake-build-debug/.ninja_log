@@ -1,0 +1,9 @@
+# ninja log v5
+57	818	7522936271435791	CMakeFiles/A1_Task4_S19_20230104.dir/register.cpp.obj	1eb13428efcad363
+36	972	7522936272982005	CMakeFiles/A1_Task4_S19_20230104.dir/memory.cpp.obj	ed9fce7e4cdd50ab
+38	965	7522955603806999	CMakeFiles/A1_Task4_S19_20230104.dir/register.cpp.obj	1eb13428efcad363
+59	1568	7522955610239119	CMakeFiles/A1_Task4_S19_20230104.dir/Alu.cpp.obj	fefa97130bf46091
+46	1152	7522968093135523	CMakeFiles/A1_Task4_S19_20230104.dir/Alu.cpp.obj	fefa97130bf46091
+49	711	7522970316834064	CMakeFiles/A1_Task4_S19_20230104.dir/register.cpp.obj	1eb13428efcad363
+61	930	7522970318982637	CMakeFiles/A1_Task4_S19_20230104.dir/memory.cpp.obj	ed9fce7e4cdd50ab
+74	1192	7522970321655260	CMakeFiles/A1_Task4_S19_20230104.dir/Alu.cpp.obj	fefa97130bf46091

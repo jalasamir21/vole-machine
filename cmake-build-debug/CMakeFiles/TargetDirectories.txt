@@ -1,0 +1,3 @@
+C:/A1-Task4-S19-20230104/cmake-build-debug/CMakeFiles/A1_Task4_S19_20230104.dir
+C:/A1-Task4-S19-20230104/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/A1-Task4-S19-20230104/cmake-build-debug/CMakeFiles/rebuild_cache.dir
