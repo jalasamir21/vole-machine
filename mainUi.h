@@ -1,9 +1,14 @@
 #ifndef MAIN_UI_H
 #define MAIN_UI_H
-#include "Register.h"
-#include "Memory.h"
-#include "Cpu.h"
 #include "Machine.h"
+
+#include "cpu.h"
+#include "memory.h"
+
+#include "register.h"
+#include "ControlUnit.h"
+
+
 #include <iostream>
 #include <string>
 
@@ -13,9 +18,12 @@ private:
     Cpu cpu;
     Memory memory;
     Register reg;
+    Cu cu;
+
 
 public:
     MainUi();
+    void enterAndExecuteInstruction();
     void displayMenu();
     void handleUserInput();
     void setBreakpoint();

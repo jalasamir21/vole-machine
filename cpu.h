@@ -15,6 +15,8 @@ class Cpu : public Register, public Alu { // Removed Cu, assuming it's not neede
 public:
     Cpu(Register& reg, Memory& mem) : reg(reg), mem(mem) {}
 
+
+
     int getProgramCounter() const;
     void setProgramCounter(int value);
 
