@@ -1,0 +1,3 @@
+/Users/ahmedatef/CLionProjects/vole-machine/build/CMakeFiles/A1_Task4_S19_20230104.dir
+/Users/ahmedatef/CLionProjects/vole-machine/build/CMakeFiles/edit_cache.dir
+/Users/ahmedatef/CLionProjects/vole-machine/build/CMakeFiles/rebuild_cache.dir
