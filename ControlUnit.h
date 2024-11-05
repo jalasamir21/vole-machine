@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <string>
 #include <vector>
-#include "Machine.h"
+#include "machine.h"
 #include "register.h"
 #include "memory.h"
 #include "cpu.h"
@@ -14,32 +14,36 @@
 #include <iomanip>
 using namespace std;
 
-class Cu {
+class Cu
+{
 private:
-    unordered_map<string, int>registers;
+    unordered_map<std::string, int> registers;
     static const int NUM_REGISTERS = 16;
-    Register* registers_arr[NUM_REGISTERS];
+    Register *registers_arr[NUM_REGISTERS];
     Alu alu;
     int PC;
+
 public:
-    Cu() {
-        // initialization of registers
-        for (int i = 0; i < NUM_REGISTERS; ++i) {
+    Cu()
+    {
+        for (int i = 0; i < NUM_REGISTERS; ++i)
+        {
             registers_arr[i] = new Register();
         }
     }
 
-    ~Cu() {
-        // loop for destructing dynamically allocated registers
-        for (int i = 0; i < NUM_REGISTERS; ++i) {
+    ~Cu()
+    {
+        for (int i = 0; i < NUM_REGISTERS; ++i)
+        {
             delete registers_arr[i];
         }
     }
 
     void resetRegister(int registerIndex);
-    void executeInstruction(const string& instruction, Memory& memory);
-    bool setRegisterValue(const string& regName, int value);
-    unordered_map<string, int> getRegisters();
-
+    void executeInstruction(const std::string &instruction, Memory &memory);
+    bool setRegisterValue(const std::string &regName, int value);
+    std::unordered_map<std::string, int> getRegisters();
 };
-#endif //VOLE_MACHINE_CONTROLUNIT_H
+
+#endif // VOLE_MACHINE_CONTROLUNIT_H_CONTROLUNIT_H

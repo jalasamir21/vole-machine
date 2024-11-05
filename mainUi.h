@@ -1,6 +1,6 @@
 #ifndef MAIN_UI_H
 #define MAIN_UI_H
-#include "Machine.h"
+#include "machine.h"
 
 #include "cpu.h"
 #include "memory.h"
@@ -8,18 +8,17 @@
 #include "register.h"
 #include "ControlUnit.h"
 
-
 #include <iostream>
 #include <string>
 
-class MainUi {
+class MainUi
+{
 private:
     machine machine;
     Cpu cpu;
     Memory memory;
     Register reg;
     Cu cu;
-
 
 public:
     MainUi();

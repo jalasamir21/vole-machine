@@ -1,8 +1,9 @@
 
-#include "MainUi.h"
+#include "mainUi.h"
 using namespace std;
 
-int main() {
+int main()
+{
     MainUi ui;
     ui.handleUserInput();
     return 0;

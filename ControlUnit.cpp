@@ -1,34 +1,35 @@
 #include "ControlUnit.h"
 using namespace std;
 
-
-
-
-// method to reset value of specified register to zero
-void Cu :: resetRegister(int registerIndex) {
-    if (registerIndex >= 0 && registerIndex < NUM_REGISTERS) {
-        registers_arr[registerIndex]->value = 0;
-    } else {
-        cerr << "Register index " << registerIndex << " not found." << endl;
+// Method to reset the value of the specified register to zero
+void Cu::resetRegister(int registerIndex)
+{
+    if (registerIndex >= 0 && registerIndex < NUM_REGISTERS)
+    {
+        registers_arr[registerIndex]->setValue(0);
     }
 }
-// instruction execution method
-void Cu::executeInstruction(const string& instruction, Memory& memory) {
+
+// Instruction execution method
+void Cu::executeInstruction(const string &instruction, Memory &memory)
+{
     size_t spacePos = instruction.find(' ');
-    if (spacePos == string::npos) {
+    if (spacePos == string::npos)
+    {
         cerr << "That's an invalid instruction format." << endl;
         return;
     }
 
     string command = instruction.substr(0, spacePos);
-    string registerName = instruction.substr(spacePos + 1, instruction.find(' ', spacePos + 1) - spacePos - 1);
+    string registerName = instruction.substr(spacePos + 1);
     int value;
 
-    //handling instructions
-    if (command == "add") {
-        // extracting the destination and source register names
+    // Handling instructions
+    if (command == "add")
+    {
         size_t commaPos = registerName.find(',');
-        if (commaPos == string::npos) {
+        if (commaPos == string::npos)
+        {
             cerr << "Invalid format for add instruction." << endl;
             return;
         }
@@ -36,23 +37,22 @@ void Cu::executeInstruction(const string& instruction, Memory& memory) {
         string destRegName = registerName.substr(0, commaPos);
         string srcRegName = registerName.substr(commaPos + 1);
 
-        // convert register names to indices
         int destRegIndex = stoi(destRegName.substr(1));
         int srcRegIndex = stoi(srcRegName.substr(1));
 
-        // check if register indices are valid
-        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS || srcRegIndex < 0 || srcRegIndex >= NUM_REGISTERS) {
+        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS || srcRegIndex < 0 || srcRegIndex >= NUM_REGISTERS)
+        {
             cerr << "Invalid register index." << endl;
             return;
         }
 
-        // perform the addition instruction
-        registers_arr[destRegIndex]->value += memory.getValue(registers_arr[srcRegIndex]->value);
-
-    } else if (command == "addfloat") {
-        // extracting the destination and source register names
+        registers_arr[destRegIndex]->setValue(registers_arr[destRegIndex]->getValue() + memory.getValue(registers_arr[srcRegIndex]->getValue()));
+    }
+    else if (command == "addfloat")
+    {
         size_t commaPos = registerName.find(',');
-        if (commaPos == string::npos) {
+        if (commaPos == string::npos)
+        {
             cerr << "Invalid format for addfloat instruction." << endl;
             return;
         }
@@ -60,23 +60,22 @@ void Cu::executeInstruction(const string& instruction, Memory& memory) {
         string destRegName = registerName.substr(0, commaPos);
         string srcRegName = registerName.substr(commaPos + 1);
 
-        // convert register names to indices
         int destRegIndex = stoi(destRegName.substr(1));
         int srcRegIndex = stoi(srcRegName.substr(1));
 
-        // check if register indices are valid
-        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS || srcRegIndex < 0 || srcRegIndex >= NUM_REGISTERS) {
+        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS || srcRegIndex < 0 || srcRegIndex >= NUM_REGISTERS)
+        {
             cerr << "Invalid register index." << endl;
             return;
         }
 
-        // perform the floating-point addition instruction
-        registers_arr[destRegIndex]->value += static_cast<float>(memory.getValue(registers_arr[srcRegIndex]->value));
-
-    } else if (command == "or") {
-        // extracting the destination and source register names
+        registers_arr[destRegIndex]->setValue(registers_arr[destRegIndex]->getValue() + static_cast<float>(memory.getValue(registers_arr[srcRegIndex]->getValue())));
+    }
+    else if (command == "or")
+    {
         size_t commaPos = registerName.find(',');
-        if (commaPos == string::npos) {
+        if (commaPos == string::npos)
+        {
             cerr << "Invalid format for or instruction." << endl;
             return;
         }
@@ -84,23 +83,22 @@ void Cu::executeInstruction(const string& instruction, Memory& memory) {
         string destRegName = registerName.substr(0, commaPos);
         string srcRegName = registerName.substr(commaPos + 1);
 
-        // convert register names to indices
         int destRegIndex = stoi(destRegName.substr(1));
         int srcRegIndex = stoi(srcRegName.substr(1));
 
-        // check if register indices are valid
-        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS || srcRegIndex < 0 || srcRegIndex >= NUM_REGISTERS) {
+        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS || srcRegIndex < 0 || srcRegIndex >= NUM_REGISTERS)
+        {
             cerr << "Invalid register index." << endl;
             return;
         }
 
-        // perform the bitwise OR operation instruction
-        registers_arr[destRegIndex]->value |= memory.getValue(srcRegIndex);
-
-    } else if (command == "and") {
-        // extracting the destination and source register names
+        registers_arr[destRegIndex]->setValue(registers_arr[destRegIndex]->getValue() | memory.getValue(srcRegIndex));
+    }
+    else if (command == "and")
+    {
         size_t commaPos = registerName.find(',');
-        if (commaPos == string::npos) {
+        if (commaPos == string::npos)
+        {
             cerr << "Invalid format for and instruction." << endl;
             return;
         }
@@ -108,23 +106,22 @@ void Cu::executeInstruction(const string& instruction, Memory& memory) {
         string destRegName = registerName.substr(0, commaPos);
         string srcRegName = registerName.substr(commaPos + 1);
 
-        // convert register names to indices
         int destRegIndex = stoi(destRegName.substr(1));
         int srcRegIndex = stoi(srcRegName.substr(1));
 
-        // check if register indices are valid
-        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS || srcRegIndex < 0 || srcRegIndex >= NUM_REGISTERS) {
+        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS || srcRegIndex < 0 || srcRegIndex >= NUM_REGISTERS)
+        {
             cerr << "Invalid register index." << endl;
             return;
         }
 
-        // perform the bitwise AND operation instruction
-        registers_arr[destRegIndex]->value &= memory.getValue(srcRegIndex);
-
-    } else if (command == "xor") {
-        // extracting the destination and source register names
+        registers_arr[destRegIndex]->setValue(registers_arr[destRegIndex]->getValue() & memory.getValue(srcRegIndex));
+    }
+    else if (command == "xor")
+    {
         size_t commaPos = registerName.find(',');
-        if (commaPos == string::npos) {
+        if (commaPos == string::npos)
+        {
             cerr << "Invalid format for xor instruction." << endl;
             return;
         }
@@ -132,23 +129,22 @@ void Cu::executeInstruction(const string& instruction, Memory& memory) {
         string destRegName = registerName.substr(0, commaPos);
         string srcRegName = registerName.substr(commaPos + 1);
 
-        // convert register names to indices
         int destRegIndex = stoi(destRegName.substr(1));
         int srcRegIndex = stoi(srcRegName.substr(1));
 
-        // check if register indices are valid
-        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS || srcRegIndex < 0 || srcRegIndex >= NUM_REGISTERS) {
+        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS || srcRegIndex < 0 || srcRegIndex >= NUM_REGISTERS)
+        {
             cerr << "Invalid register index." << endl;
             return;
         }
 
-        // perform the bitwise XOR operation instruction
-        registers_arr[destRegIndex]->value ^= memory.getValue(srcRegIndex);
-
-    } else if (command == "load1") {
-        // extract the destination register and memory address
+        registers_arr[destRegIndex]->setValue(registers_arr[destRegIndex]->getValue() ^ memory.getValue(srcRegIndex));
+    }
+    else if (command == "load1")
+    {
         size_t commaPos = registerName.find(',');
-        if (commaPos == string::npos) {
+        if (commaPos == string::npos)
+        {
             cerr << "Invalid format for load1 instruction." << endl;
             return;
         }
@@ -156,21 +152,21 @@ void Cu::executeInstruction(const string& instruction, Memory& memory) {
         string destRegName = registerName.substr(0, commaPos);
         string addressStr = registerName.substr(commaPos + 1);
 
-        // convert register name to index
         int destRegIndex = stoi(destRegName.substr(1));
         int address = stoi(addressStr);
 
-        // check if register index is valid
-        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS) {
+        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS)
+        {
             cerr << "Invalid register index." << endl;
             return;
         }
-        registers_arr[destRegIndex]->value = memory.getValue(address);
-
-    } else if (command == "load2") {
-        // extracting the destination register and memory address
+        registers_arr[destRegIndex]->setValue(memory.getValue(address));
+    }
+    else if (command == "load2")
+    {
         size_t commaPos = registerName.find(',');
-        if (commaPos == string::npos) {
+        if (commaPos == string::npos)
+        {
             cerr << "Invalid format for load2 instruction." << endl;
             return;
         }
@@ -178,27 +174,26 @@ void Cu::executeInstruction(const string& instruction, Memory& memory) {
         string destRegName = registerName.substr(0, commaPos);
         string addressStr = registerName.substr(commaPos + 1);
 
-        // convert register name to index
         int destRegIndex = stoi(destRegName.substr(1));
         int address = stoi(addressStr);
 
-        // check if register index is valid
-        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS) {
+        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS)
+        {
             cerr << "Invalid register index." << endl;
             return;
         }
-        registers_arr[destRegIndex]->value = memory.getValue(address);
-
-    } else if (command == "jump") {
-        // extract the target address
+        registers_arr[destRegIndex]->setValue(memory.getValue(address));
+    }
+    else if (command == "jump")
+    {
         int targetAddress = stoi(registerName);
-        //pc is the program counter
         PC = targetAddress;
-
-    } else if (command == "rotate") {
-        // extract the destination register and the number of bits to rotate
+    }
+    else if (command == "rotate")
+    {
         size_t commaPos = registerName.find(',');
-        if (commaPos == string::npos) {
+        if (commaPos == string::npos)
+        {
             cerr << "Invalid format for rotate instruction." << endl;
             return;
         }
@@ -206,24 +201,24 @@ void Cu::executeInstruction(const string& instruction, Memory& memory) {
         string destRegName = registerName.substr(0, commaPos);
         string bitsStr = registerName.substr(commaPos + 1);
 
-        // convert register name to index
         int destRegIndex = stoi(destRegName.substr(1));
         int bits = stoi(bitsStr);
 
-        // check if register index is valid
-        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS) {
+        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS)
+        {
             cerr << "Invalid register index." << endl;
             return;
         }
 
-        // perform the left rotation
-        int value = registers_arr[destRegIndex]->value;
+        int value = registers_arr[destRegIndex]->getValue();
         int rotatedValue = (value << bits) | (value >> (32 - bits));
-        registers_arr[destRegIndex]->value = rotatedValue;
-    } else if (command == "copyregister") {
-        // extract the destination and source register names
+        registers_arr[destRegIndex]->setValue(rotatedValue);
+    }
+    else if (command == "copyregister")
+    {
         size_t commaPos = registerName.find(',');
-        if (commaPos == string::npos) {
+        if (commaPos == string::npos)
+        {
             cerr << "Invalid format for copyregister instruction." << endl;
             return;
         }
@@ -231,23 +226,22 @@ void Cu::executeInstruction(const string& instruction, Memory& memory) {
         string destRegName = registerName.substr(0, commaPos);
         string srcRegName = registerName.substr(commaPos + 1);
 
-        // convert register names to indices
         int destRegIndex = stoi(destRegName.substr(1));
         int srcRegIndex = stoi(srcRegName.substr(1));
 
-        // check if register indices are valid
-        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS || srcRegIndex < 0 || srcRegIndex >= NUM_REGISTERS) {
+        if (destRegIndex < 0 || destRegIndex >= NUM_REGISTERS || srcRegIndex < 0 || srcRegIndex >= NUM_REGISTERS)
+        {
             cerr << "Invalid register index." << endl;
             return;
         }
 
-        // Perform the copy operation
-        registers_arr[destRegIndex]->value = registers_arr[srcRegIndex]->value;
-
-    } else if (command == "jumpifgreater") {
-        // Extract the source register and the target address
+        registers_arr[destRegIndex]->setValue(registers_arr[srcRegIndex]->getValue());
+    }
+    else if (command == "jumpifgreater")
+    {
         size_t commaPos = registerName.find(',');
-        if (commaPos == string::npos) {
+        if (commaPos == string::npos)
+        {
             cerr << "Invalid format for jumpifgreater instruction." << endl;
             return;
         }
@@ -255,42 +249,47 @@ void Cu::executeInstruction(const string& instruction, Memory& memory) {
         string srcRegName = registerName.substr(0, commaPos);
         string targetAddressStr = registerName.substr(commaPos + 1);
 
-        // Convert register name to index
         int srcRegIndex = stoi(srcRegName.substr(1));
         int targetAddress = stoi(targetAddressStr);
-        // Check if register index is valid
-        if (srcRegIndex < 0 || srcRegIndex >= NUM_REGISTERS) {
+
+        if (srcRegIndex < 0 || srcRegIndex >= NUM_REGISTERS)
+        {
             cerr << "Invalid register index." << endl;
             return;
         }
 
-        // Check if the value in the source register is greater than zero
-        if (registers_arr[srcRegIndex]->value > 0) {
+        if (registers_arr[srcRegIndex]->getValue() > 0)
+        {
             PC = targetAddress;
         }
-    } else if (command == "halt") {
+    }
+    else if (command == "halt")
+    {
         cout << "Halting execution." << endl;
         return;
-
-    } else {
+    }
+    else
+    {
         cerr << "Unknown instruction: " << command << endl;
     }
 }
 
-
-bool Cu::setRegisterValue(const string& regName, int value) {
-    // Check if the register name is valid
-    if (registers.find(regName) != registers.end()) {
-        // Convert regName to index
+bool Cu::setRegisterValue(const std::string &regName, int value)
+{
+    if (registers.find(regName) != registers.end())
+    {
         int index = std::stoi(regName.substr(1)); // Assuming regName is in format "R0", "R1", etc.
-        if (index >= 0 && index < NUM_REGISTERS) {
-            registers_arr[index]->setCell(0, value); // Assuming setCell(0, value) is the intended operation
+        if (index >= 0 && index < NUM_REGISTERS)
+        {
+            registers_arr[index]->setValue(value);
             registers[regName] = value;
             return true;
         }
     }
     return false;
 }
-unordered_map<string, int> Cu :: getRegisters() {
+
+unordered_map<string, int> Cu::getRegisters()
+{
     return registers;
 }

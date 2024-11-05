@@ -1,18 +1,21 @@
-
-
 #ifndef VOLE_MACHINE_REGISTER_H
 #define VOLE_MACHINE_REGISTER_H
-using namespace std;
 
-class Register {
+class Register
+{
 public:
-    int value;
+    Register();  // Constructor
+    ~Register(); // Destructor
+
     int getCell(int address);
-    void setCell(int address ,int value);
+    void setCell(int address, int value);
     int getValue() const;
-    int setValue() const;
+    void setValue(int value);
+
 private:
-    int memory[16];
-    int size=16;
+    int *memory;   // Pointer to dynamically allocated memory
+    int size = 16; // Size of the register
+    int value;     // Current value of the register
 };
-#endif //VOLE_MACHINE_REGISTER_H
+
+#endif // VOLE_MACHINE_REGISTER_H

@@ -4,10 +4,11 @@
 #include "memory.h"
 
 #include <fstream>
-//#include <iostream>
+// #include <iostream>
 using namespace std;
 
-void machine::loadProgramFile() {
+void machine::loadProgramFile()
+{
 
     fstream file;
     string line;
@@ -15,25 +16,28 @@ void machine::loadProgramFile() {
     string filename;
     cin >> filename;
     file.open(filename, ios::in);
-    if (!file.is_open()) {
+    if (!file.is_open())
+    {
         cerr << "Error opening file." << endl;
         return;
     }
     int i = 0;
-    while (getline(file, line)){
+    while (getline(file, line))
+    {
         mem.setCell(i, line.substr(0, 2));
         mem.setCell(i + 1, line.substr(2, 4));
-        i+=2;
-
+        i += 2;
     }
     file.close();
 }
 
-void machine::outputState() {
+void machine::outputState()
+{
 
-    if (&processor && &mem) {
+    if (&processor && &mem)
+    {
         // Output the program counter
-        cout << "Program Counter: " << processor.getProgramCounter() <<endl;
+        cout << "Program Counter: " << processor.getProgramCounter() << endl;
 
         // Output the instruction register
         cout << "Instruction Register: " << processor.getInstructionRegister() << endl;
@@ -41,17 +45,20 @@ void machine::outputState() {
         // Output all register values
         cout << "Registers:" << endl;
         auto registers = processor.getAllRegisters();
-        for (const auto& [regName, regValue] : registers) {
+        for (const auto &[regName, regValue] : registers)
+        {
             cout << regName << " = " << regValue << endl;
         }
 
         // Output memory contents
         cout << "Memory:" << endl;
-        for (int address = 0; address < mem.getSize(); ++address) {
+        for (int address = 0; address < mem.getSize(); ++address)
+        {
             cout << address << " | " << mem.getCell(address) << endl;
         }
-    } else {
+    }
+    else
+    {
         cerr << "Error: Processor or Memory not initialized." << endl;
     }
 }
-
